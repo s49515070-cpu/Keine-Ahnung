@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Blinkender Text</title>
-    <style>
-        body {
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<title>Sigma Blink</title>
 
-        .blink {
-            font-size: 80px; /* Größe des Textes */
-            font-weight: bold;
-            color: red;
-            animation: blinken 1s infinite;
-        }
+<style>
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-        @keyframes blinken {
-            0%   { opacity: 1; }
-            50%  { opacity: 0; }
-            100% { opacity: 1; }
-        }
-    </style>
+.blink {
+    font-size: 80px;
+    font-weight: bold;
+    animation: colorBlink 1s infinite;
+}
+
+@keyframes colorBlink {
+    0%   { color: red; }
+    20%  { color: blue; }
+    40%  { color: lime; }
+    60%  { color: yellow; }
+    80%  { color: magenta; }
+    100% { color: cyan; }
+}
+</style>
 </head>
+
 <body>
-
-    <div class="blink">SIGMA</div>
-
+    <div class="blink">Sigma</div>
 </body>
 </html>
