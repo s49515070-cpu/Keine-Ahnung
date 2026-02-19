@@ -1,2 +1,34 @@
-Meine Website
-Nena sabbert beim denken
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Blinkender Text</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .blink {
+            font-size: 80px; /* Größe des Textes */
+            font-weight: bold;
+            color: red;
+            animation: blinken 1s infinite;
+        }
+
+        @keyframes blinken {
+            0%   { opacity: 1; }
+            50%  { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blink">nena sabbert beim denken</div>
+
+</body>
+</html>
