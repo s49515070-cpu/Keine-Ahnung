@@ -3,169 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Herr Nagler Match Test</title>
+
+<title>ULTIMATIVER INTERNET FEHLER</title>
 
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Comic Sans MS;
+user-select:none;
 }
 
 body{
-  font-family:Arial, sans-serif;
-  min-height:100vh;
-  background:
-  radial-gradient(circle at top,#ff00aa 0%,#140014 40%,#000 100%);
-  overflow-x:hidden;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:40px;
+overflow:hidden;
+background:black;
+color:white;
+height:100vh;
+cursor:crosshair;
+transition:0.2s;
 }
 
-.bg1,.bg2{
-  position:fixed;
-  width:500px;
-  height:500px;
-  border-radius:50%;
-  filter:blur(180px);
-  opacity:0.25;
-  z-index:-1;
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-10;
 }
 
-.bg1{
-  background:#ff00aa;
-  top:-100px;
-  left:-100px;
+#mainTitle{
+position:absolute;
+top:20px;
+width:100%;
+text-align:center;
+font-size:70px;
+font-weight:bold;
+color:#ff00aa;
+text-shadow:
+0 0 20px #ff00aa,
+0 0 40px #ff00aa,
+0 0 80px #ff00aa;
+animation:wiggle 0.1s infinite alternate;
 }
 
-.bg2{
-  background:#7c3aed;
-  bottom:-100px;
-  right:-100px;
+@keyframes wiggle{
+from{
+transform:translateX(-3px) rotate(-1deg);
+}
+to{
+transform:translateX(3px) rotate(1deg);
+}
 }
 
-.container{
-  width:720px;
-  background:rgba(10,10,10,0.78);
-  backdrop-filter:blur(12px);
-  border-radius:30px;
-  padding:40px;
-  box-shadow:0 0 40px rgba(255,0,170,0.4);
-  border:2px solid rgba(255,255,255,0.08);
+#sub{
+position:absolute;
+top:110px;
+width:100%;
+text-align:center;
+font-size:22px;
+color:#00ffff;
 }
 
-h1{
-  text-align:center;
-  font-size:42px;
-  color:#ff4fd8;
-  text-shadow:0 0 15px #ff00aa;
-  margin-bottom:10px;
+.panel{
+position:absolute;
+background:rgba(255,255,255,0.08);
+border:2px solid rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+border-radius:25px;
+padding:20px;
+box-shadow:0 0 30px rgba(255,0,170,0.3);
 }
 
-.subtitle{
-  text-align:center;
-  margin-bottom:35px;
-  color:#d4d4d4;
-  font-size:18px;
+#stats{
+left:20px;
+top:180px;
+width:260px;
 }
 
-.question{
-  margin-bottom:24px;
+#chat{
+right:20px;
+top:180px;
+width:320px;
+height:300px;
+overflow:hidden;
 }
 
-label{
-  display:block;
-  margin-bottom:10px;
-  font-size:18px;
-  color:#ffb3ef;
-  font-weight:bold;
-}
-
-textarea{
-  width:100%;
-  border:none;
-  outline:none;
-  border-radius:18px;
-  padding:15px;
-  background:#1f1f1f;
-  color:white;
-  font-size:15px;
-  resize:none;
-  border:2px solid transparent;
-  transition:0.2s;
-}
-
-textarea:focus{
-  border:2px solid #ff00aa;
-  box-shadow:0 0 15px rgba(255,0,170,0.5);
-  transform:scale(1.01);
-}
-
-button{
-  width:100%;
-  padding:18px;
-  border:none;
-  border-radius:18px;
-  background:linear-gradient(90deg,#ff00aa,#7c3aed);
-  color:white;
-  font-size:20px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.25s;
-  margin-top:10px;
-  box-shadow:0 0 20px rgba(255,0,170,0.5);
-}
-
-button:hover{
-  transform:scale(1.03);
-  box-shadow:0 0 30px rgba(255,0,170,0.8);
-}
-
-#resultBox{
-  margin-top:35px;
-  display:none;
-}
-
-.percent{
-  font-size:65px;
-  text-align:center;
-  font-weight:bold;
-  color:#fff;
-  text-shadow:0 0 20px #ff00aa;
+#centerChaos{
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:400px;
+text-align:center;
 }
 
 .bar{
-  width:100%;
-  height:28px;
-  background:#2a2a2a;
-  border-radius:30px;
-  overflow:hidden;
-  margin-top:20px;
+width:100%;
+height:25px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+margin-top:15px;
 }
 
 .fill{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#ff00aa,#7c3aed);
-  transition:1.2s;
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#ff00aa,#00ffff);
+transition:0.3s;
 }
 
-.message{
-  text-align:center;
-  margin-top:20px;
-  font-size:22px;
-  color:#ffb3ef;
+button{
+padding:15px 25px;
+border:none;
+border-radius:20px;
+font-size:18px;
+font-weight:bold;
+background:linear-gradient(45deg,#ff00aa,#7c3aed);
+color:white;
+cursor:pointer;
+margin:10px;
+box-shadow:0 0 20px #ff00aa;
+transition:0.2s;
 }
 
-.extra{
-  text-align:center;
-  margin-top:12px;
-  color:#d4d4d4;
-  line-height:1.5;
+button:hover{
+transform:scale(1.15) rotate(3deg);
+}
+
+#dvd{
+position:absolute;
+width:160px;
+height:80px;
+border-radius:20px;
+background:linear-gradient(45deg,#ff0000,#00ffff);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+font-weight:bold;
+box-shadow:0 0 30px white;
+}
+
+.popup{
+position:absolute;
+padding:20px;
+background:white;
+color:black;
+font-weight:bold;
+border-radius:20px;
+animation:popup 0.3s;
+box-shadow:0 0 40px white;
+z-index:999;
+}
+
+@keyframes popup{
+from{
+transform:scale(0);
+}
+to{
+transform:scale(1);
+}
+}
+
+#brainrot{
+position:absolute;
+bottom:20px;
+width:100%;
+text-align:center;
+font-size:30px;
+color:#00ff99;
+text-shadow:0 0 20px #00ff99;
+}
+
+.floating{
+position:absolute;
+font-size:50px;
+pointer-events:none;
+animation:float 8s linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+from{
+transform:translateY(100vh) rotate(0deg);
+}
+to{
+transform:translateY(-200px) rotate(720deg);
+}
+}
+
+.glitch{
+animation:glitch 0.08s infinite;
+}
+
+@keyframes glitch{
+0%{transform:translate(2px,2px);}
+25%{transform:translate(-2px,0);}
+50%{transform:translate(2px,-2px);}
+75%{transform:translate(-2px,2px);}
+100%{transform:translate(0,0);}
+}
+
+.chatMessage{
+margin-bottom:12px;
+padding:10px;
+border-radius:15px;
+background:rgba(255,255,255,0.08);
+}
+
+.warning{
+color:#ff5555;
+font-weight:bold;
 }
 
 </style>
@@ -173,183 +222,455 @@ button:hover{
 
 <body>
 
-<div class="bg1"></div>
-<div class="bg2"></div>
+<canvas id="stars"></canvas>
 
-<div class="container">
-
-<h1>HERR NAGLER MATCH TEST</h1>
-
-<div class="subtitle">
-Finde heraus ob ihr destined seid oder kompletter toxic chaos wärt
+<div id="mainTitle">
+ULTIMATIVE CHAOS WEBSITE
 </div>
 
-<div class="question">
-<label>Wie oft denkst du täglich an Herr Nagler?</label>
-<textarea id="q1" rows="2"></textarea>
+<div id="sub">
+Diese Website hätte niemals erstellt werden dürfen.
 </div>
 
-<div class="question">
-<label>Was macht ihn für dich attraktiv?</label>
-<textarea id="q2" rows="2"></textarea>
-</div>
+<div class="panel" id="stats">
 
-<div class="question">
-<label>Wie würdest du reagieren wenn er plötzlich „bleib kurz nach dem Unterricht“ sagt?</label>
-<textarea id="q3" rows="2"></textarea>
-</div>
+<h2>LIVE CHAOS DATEN</h2>
 
-<div class="question">
-<label>Was wäre euer größtes Problem als Duo?</label>
-<textarea id="q4" rows="2"></textarea>
-</div>
-
-<div class="question">
-<label>Wie sehr würdest du für Aufmerksamkeit peinlich werden?</label>
-<textarea id="q5" rows="2"></textarea>
-</div>
-
-<div class="question">
-<label>Beschreibe euren gemeinsamen Vibe in einem Satz</label>
-<textarea id="q6" rows="2"></textarea>
-</div>
-
-<button onclick="calculateMatch()">
-MATCH BERECHNEN
-</button>
-
-<div id="resultBox">
-
-<div class="percent" id="percent">
-0%
+<div style="margin-top:20px;">
+Mentale Stabilität
 </div>
 
 <div class="bar">
-<div class="fill" id="fill"></div>
+<div class="fill" id="mentalBar"></div>
 </div>
 
-<div class="message" id="message"></div>
+<div style="margin-top:20px;">
+Brainrot Level
+</div>
 
-<div class="extra" id="extra"></div>
+<div class="bar">
+<div class="fill" id="brainrotBar"></div>
+</div>
+
+<div style="margin-top:20px;">
+Internetschaden
+</div>
+
+<div class="bar">
+<div class="fill" id="damageBar"></div>
+</div>
 
 </div>
 
+<div class="panel" id="chat">
+
+<h2>LIVE CHAT</h2>
+
+<div id="messages" style="margin-top:20px;"></div>
+
+</div>
+
+<div class="panel" id="centerChaos">
+
+<h1>DO NOT CONTINUE</h1>
+
+<button onclick="activateUltraChaos()">
+AKTIVIEREN
+</button>
+
+<button onclick="spawn1000Things()">
+1000 DINGE SPAWNEN
+</button>
+
+<button onclick="fakeVirus()">
+FREE VBUCKS
+</button>
+
+<button onclick="brainrotMode()">
+BRAINROT MODE
+</button>
+
+</div>
+
+<div id="dvd">
+ERROR
+</div>
+
+<div id="brainrot">
+Der Kühlschrank beobachtet dich.
 </div>
 
 <script>
 
-function calculateMatch(){
+const canvas =
+document.getElementById("stars");
 
-  let answers = [
-    q1.value.toLowerCase(),
-    q2.value.toLowerCase(),
-    q3.value.toLowerCase(),
-    q4.value.toLowerCase(),
-    q5.value.toLowerCase(),
-    q6.value.toLowerCase()
-  ];
+const ctx =
+canvas.getContext("2d");
 
-  let score = 0;
+canvas.width =
+window.innerWidth;
 
-  const positiveWords = [
-    "liebe",
-    "verliebt",
-    "cute",
-    "hot",
-    "süß",
-    "perfekt",
-    "immer",
-    "heiraten",
-    "träume",
-    "obsessed",
-    "crazy",
-    "toxic",
-    "freaky",
-    "date",
-    "romantisch",
-    "crush",
-    "sympathisch",
-    "wow",
-    "besessen"
-  ];
+canvas.height =
+window.innerHeight;
 
-  answers.forEach(answer => {
+let stars = [];
 
-    score += Math.min(answer.length / 3.5, 15);
+for(let i=0;i<300;i++){
 
-    positiveWords.forEach(word => {
+stars.push({
 
-      if(answer.includes(word)){
-        score += 6;
-      }
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*3
 
-    });
-
-  });
-
-  // random cinematic effect
-  score += Math.floor(Math.random() * 15);
-
-  if(score > 100){
-    score = 100;
-  }
-
-  score = Math.round(score);
-
-  let msg = "";
-  let extra = "";
-
-  if(score < 20){
-
-    msg = "Nur akademische Beziehung 😭";
-
-    extra = "Ihr würdet wahrscheinlich nur über Hausaufgaben reden.";
-
-  }
-
-  else if(score < 40){
-
-    msg = "Leichter Crush detected 👀";
-
-    extra = "Da ist Spannung… aber noch kontrollierbar.";
-
-  }
-
-  else if(score < 60){
-
-    msg = "Gefährliche Kombination 💀";
-
-    extra = "Ihr würdet euch gegenseitig komplett ablenken.";
-
-  }
-
-  else if(score < 80){
-
-    msg = "MAXIMALER FREAKY VIBE 🔥";
-
-    extra = "Die Klasse würde sofort merken dass da irgendwas läuft.";
-
-  }
-
-  else{
-
-    msg = "SOULMATE LEVEL ERREICHT ❤️";
-
-    extra = "Das ist kein Crush mehr. Das ist ein kompletter Herr-Nagler-Story-Arc.";
-
-  }
-
-  document.getElementById("resultBox").style.display = "block";
-
-  document.getElementById("percent").innerHTML = score + "%";
-
-  document.getElementById("fill").style.width = score + "%";
-
-  document.getElementById("message").innerHTML = msg;
-
-  document.getElementById("extra").innerHTML = extra;
+});
 
 }
+
+function drawStars(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = "white";
+
+stars.forEach(s=>{
+
+ctx.beginPath();
+
+ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+
+ctx.fill();
+
+s.y += 0.5;
+
+if(s.y > canvas.height){
+
+s.y = 0;
+
+}
+
+});
+
+requestAnimationFrame(drawStars);
+
+}
+
+drawStars();
+
+let dvd =
+document.getElementById("dvd");
+
+let x = 100;
+let y = 100;
+
+let dx = 5;
+let dy = 5;
+
+function moveDVD(){
+
+x += dx;
+y += dy;
+
+if(x + 160 > window.innerWidth || x < 0){
+
+dx *= -1;
+
+randomColor();
+
+}
+
+if(y + 80 > window.innerHeight || y < 0){
+
+dy *= -1;
+
+randomColor();
+
+}
+
+dvd.style.left = x + "px";
+dvd.style.top = y + "px";
+
+requestAnimationFrame(moveDVD);
+
+}
+
+moveDVD();
+
+function randomColor(){
+
+document.body.style.background =
+"hsl(" + Math.random()*360 + ",100%,8%)";
+
+}
+
+const randomMessages = [
+
+"Warum bewegt sich die Wand?",
+"Wer hat den Toast angerufen?",
+"Bitte füttere den Router nicht.",
+"Reality.exe wurde beendet.",
+"Der Hamster kontrolliert das WLAN.",
+"Du wurdest ausgewählt.",
+"Dieser Satz hat keinen Sinn.",
+"Der Boden ist aus Internet.",
+"Die Katze übernimmt das System."
+
+];
+
+setInterval(()=>{
+
+document.getElementById("brainrot").innerHTML =
+randomMessages[
+Math.floor(Math.random()*randomMessages.length)
+];
+
+},2500);
+
+function createPopup(text){
+
+let popup =
+document.createElement("div");
+
+popup.className = "popup";
+
+popup.innerHTML = text;
+
+popup.style.left =
+Math.random()*window.innerWidth + "px";
+
+popup.style.top =
+Math.random()*window.innerHeight + "px";
+
+document.body.appendChild(popup);
+
+setTimeout(()=>{
+
+popup.remove();
+
+},2500);
+
+}
+
+function activateUltraChaos(){
+
+document.body.classList.add("glitch");
+
+setInterval(()=>{
+
+createFloating();
+
+},100);
+
+setInterval(()=>{
+
+createPopup("⚠ SYSTEMFEHLER ⚠");
+
+},300);
+
+}
+
+function createFloating(){
+
+const emojis = [
+"🔥",
+"🐈",
+"💀",
+"🧀",
+"🗿",
+"👁",
+"🚨",
+"🍞",
+"🌀"
+];
+
+let div =
+document.createElement("div");
+
+div.className = "floating";
+
+div.innerHTML =
+emojis[
+Math.floor(Math.random()*emojis.length)
+];
+
+div.style.left =
+Math.random()*window.innerWidth + "px";
+
+div.style.animationDuration =
+(4 + Math.random()*6) + "s";
+
+document.body.appendChild(div);
+
+setTimeout(()=>{
+
+div.remove();
+
+},10000);
+
+}
+
+function spawn1000Things(){
+
+for(let i=0;i<200;i++){
+
+setTimeout(()=>{
+
+let btn =
+document.createElement("button");
+
+btn.innerHTML = "???";
+
+btn.style.position = "absolute";
+
+btn.style.left =
+Math.random()*window.innerWidth + "px";
+
+btn.style.top =
+Math.random()*window.innerHeight + "px";
+
+btn.onclick = ()=>{
+
+document.body.style.filter =
+"hue-rotate(" +
+Math.random()*360 +
+"deg)";
+
+};
+
+document.body.appendChild(btn);
+
+},i*20);
+
+}
+
+}
+
+function fakeVirus(){
+
+for(let i=0;i<50;i++){
+
+setTimeout(()=>{
+
+createPopup(
+"⚠ VIRUS GEFUNDEN ⚠"
+);
+
+},i*100);
+
+}
+
+}
+
+function brainrotMode(){
+
+let audio =
+new Audio(
+"https://www.soundjay.com/button/beep-07.wav"
+);
+
+setInterval(()=>{
+
+audio.play();
+
+document.body.style.transform =
+"rotate(" +
+(Math.random()*2-1) +
+"deg)";
+
+},400);
+
+}
+
+const chatTexts = [
+
+"Kevin: warum lebt die website",
+"Sarah: ich habe angst",
+"Max: FREE ROBUX???",
+"Unknown: der toaster spricht",
+"Luca: mein browser weint",
+"Emma: was passiert hier",
+"System: REALITY FAILURE",
+"Bot: meow"
+
+];
+
+setInterval(()=>{
+
+let msg =
+document.createElement("div");
+
+msg.className = "chatMessage";
+
+msg.innerHTML =
+chatTexts[
+Math.floor(Math.random()*chatTexts.length)
+];
+
+document.getElementById("messages")
+.prepend(msg);
+
+if(document.getElementById("messages")
+.children.length > 10){
+
+document.getElementById("messages")
+.lastChild.remove();
+
+}
+
+},1200);
+
+let mental = 100;
+
+setInterval(()=>{
+
+mental--;
+
+if(mental < 0){
+mental = 0;
+}
+
+document.getElementById("mentalBar")
+.style.width = mental + "%";
+
+document.getElementById("brainrotBar")
+.style.width =
+(100-mental) + "%";
+
+document.getElementById("damageBar")
+.style.width =
+Math.random()*100 + "%";
+
+},300);
+
+document.addEventListener("mousemove",(e)=>{
+
+if(Math.random() > 0.92){
+
+let spark =
+document.createElement("div");
+
+spark.innerHTML = "✨";
+
+spark.style.position = "absolute";
+
+spark.style.left = e.clientX + "px";
+
+spark.style.top = e.clientY + "px";
+
+spark.style.fontSize = "30px";
+
+document.body.appendChild(spark);
+
+setTimeout(()=>{
+
+spark.remove();
+
+},1000);
+
+}
+
+});
 
 </script>
 
