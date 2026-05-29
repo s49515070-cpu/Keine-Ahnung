@@ -1,37 +1,193 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>67 Blink</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freaky Herr-Nagler-Test</title>
 
-<style>
-body {
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #fbcfe8, #c4b5fd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
 
-.blink {
-    font-size: 200px; /* größer */
-    font-weight: bold;
-    animation: colorBlink 1s infinite;
-}
+    .container {
+      background: white;
+      width: 600px;
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
 
-@keyframes colorBlink {
-    0%   { color: red; }
-    20%  { color: blue; }
-    40%  { color: lime; }
-    60%  { color: yellow; }
-    80%  { color: magenta; }
-    100% { color: cyan; }
-}
-</style>
+    h1 {
+      text-align: center;
+      color: #7e22ce;
+      margin-bottom: 30px;
+    }
+
+    .question {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #d1d5db;
+      font-size: 15px;
+      resize: none;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: #7e22ce;
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #6b21a8;
+    }
+
+    #result {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    .small {
+      margin-top: 12px;
+      font-size: 17px;
+      font-weight: normal;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="blink">67</div>
+
+<div class="container">
+
+  <h1>Wie freaky bist du bei Herr Nagler?</h1>
+
+  <div class="question">
+    <label>Was würdest du machen, wenn Herr Nagler dir plötzlich um 2 Uhr nachts schreibt?</label>
+    <textarea id="q1" rows="2"></textarea>
+  </div>
+
+  <div class="question">
+    <label>Was ist das Verrückteste, das du für Herr Nagler machen würdest?</label>
+    <textarea id="q2" rows="2"></textarea>
+  </div>
+
+  <div class="question">
+    <label>Wie würdest du reagieren, wenn er dir plötzlich ein Kompliment macht?</label>
+    <textarea id="q3" rows="2"></textarea>
+  </div>
+
+  <div class="question">
+    <label>Welche Gedanken hättest du bei einem langen Augenkontakt mit ihm?</label>
+    <textarea id="q4" rows="2"></textarea>
+  </div>
+
+  <div class="question">
+    <label>Was wäre eure größte Red Flag zusammen?</label>
+    <textarea id="q5" rows="2"></textarea>
+  </div>
+
+  <div class="question">
+    <label>Wie peinlich würdest du dich vor ihm verhalten?</label>
+    <textarea id="q6" rows="2"></textarea>
+  </div>
+
+  <button onclick="calculate()">Ergebnis berechnen</button>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+
+function calculate() {
+
+  let answers = [
+    q1.value.toLowerCase(),
+    q2.value.toLowerCase(),
+    q3.value.toLowerCase(),
+    q4.value.toLowerCase(),
+    q5.value.toLowerCase(),
+    q6.value.toLowerCase()
+  ];
+
+  let score = 0;
+
+  const words = [
+    "liebe", "verliebt", "freaky", "obsessed",
+    "crush", "heiraten", "träume", "immer",
+    "cute", "hot", "perfekt", "süß",
+    "starren", "romantisch", "wahnsinnig",
+    "schwärme", "date", "wow"
+  ];
+
+  answers.forEach(answer => {
+
+    score += Math.min(answer.length / 4, 18);
+
+    words.forEach(word => {
+      if(answer.includes(word)) {
+        score += 7;
+      }
+    });
+
+  });
+
+  if(score > 100) {
+    score = 100;
+  }
+
+  score = Math.round(score);
+
+  let text = "";
+
+  if(score < 20) {
+    text = "Noch relativ normal 😭";
+  }
+  else if(score < 50) {
+    text = "Okay… da ist definitiv ein Crush 👀";
+  }
+  else if(score < 80) {
+    text = "Du bist komplett im Herr-Nagler-Film 😭";
+  }
+  else {
+    text = "Absolute Endstufe. Keine Rettung mehr 💀";
+  }
+
+  document.getElementById("result").innerHTML =
+    `Du stehst zu ${score}% auf Herr Nagler!
+    <div class="small">${text}</div>`;
+}
+
+</script>
+
 </body>
 </html>
